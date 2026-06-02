@@ -1,0 +1,229 @@
+/* ------------------------------------------------------------------ */
+/* Hero v2                                                             */
+/* ------------------------------------------------------------------ */
+
+.hero-v2 {
+    padding: 4rem 2rem 5rem;
+    text-align: center;
+}
+
+.hero-v2-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Badge */
+
+.hero-v2-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent-light);
+    color: var(--accent);
+    border: 1px solid rgba(26, 71, 42, 0.25);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.4rem 1rem;
+    margin-bottom: 2rem;
+}
+
+.hero-v2-badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+}
+
+/* Headline */
+
+.hero-v2-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.75rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+}
+
+.hero-v2-title-accent {
+    color: var(--accent);
+    display: block;
+}
+
+/* Subtitle */
+
+.hero-v2-subtitle {
+    font-size: 1.05rem;
+    color: var(--ink-muted);
+    line-height: 1.75;
+    max-width: 520px;
+    margin-bottom: 2.25rem;
+}
+
+/* CTA buttons */
+
+.hero-v2-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 3.5rem;
+}
+
+.hero-v2-btn {
+    padding: 0.75rem 1.75rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Mock dashboard                                                      */
+/* ------------------------------------------------------------------ */
+
+.mock-dash {
+    width: 100%;
+    background: var(--paper-warm);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
+}
+
+/* Browser chrome */
+
+.mock-dash-chrome {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.875rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.chrome-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.chrome-red    { background: #ff5f57; }
+.chrome-yellow { background: #febc2e; }
+.chrome-green  { background: #28c840; }
+
+/* Dashboard body */
+
+.mock-dash-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Stat cards */
+
+.mock-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.mock-stat-card {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    text-align: left;
+}
+
+.mock-stat-label {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    font-weight: 500;
+}
+
+.mock-stat-value {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--ink);
+    line-height: 1.1;
+}
+
+.mock-stat-sub {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    font-weight: 500;
+}
+
+.mock-stat-danger  { color: var(--danger); }
+.mock-stat-success { color: var(--accent); }
+
+/* Category bars */
+
+.mock-cat-bars {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.mock-cat-row {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.mock-cat-name {
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+    font-weight: 500;
+    width: 52px;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.mock-cat-track {
+    flex: 1;
+    height: 10px;
+    background: var(--border-soft);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.mock-cat-bar {
+    height: 100%;
+    border-radius: 999px;
+}
+
+.mock-cat-bar--amber  { background: #c17f24; }
+.mock-cat-bar--blue   { background: #4b7be5; }
+.mock-cat-bar--indigo { background: #7c6fc4; }
+
+/* ------------------------------------------------------------------ */
+/* Responsive                                                          */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 640px) {
+    .mock-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-v2-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-v2-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
