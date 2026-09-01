@@ -13,7 +13,11 @@
 
         <div class="hero-v2-badge">
             <span class="hero-v2-badge-dot"></span>
+            {% if session.user_id %}
+            Welcome back, {{ session.user_name }}!
+            {% else %}
             Free to use · No credit card needed
+            {% endif %}
         </div>
 
         <h1 class="hero-v2-title">
