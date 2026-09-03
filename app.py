@@ -21,7 +21,7 @@ def landing():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if session.get("user_id"):
-        return redirect(url_for("landing"))
+        return redirect(url_for("profile"))
 
     if request.method == "GET":
         return render_template("register.html")
@@ -99,7 +99,7 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if session.get("user_id"):
-        return redirect(url_for("landing"))
+        return redirect(url_for("profile"))
 
     if request.method == "GET":
         return render_template("login.html")
@@ -126,13 +126,56 @@ def login():
     session["user_id"] = user["id"]
     session["user_name"] = user["name"]
 
-    return redirect(url_for("landing"))
+    return redirect(url_for("profile"))
 
 
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect(url_for("landing"))
+
+
+@app.route("/profile")
+def profile():
+    if not session.get("user_id"):
+        return redirect(url_for("login"))
+
+    user = {
+        "name": "Ayesha Khan",
+        "email": "ayesha.khan@example.com",
+        "initials": "AK",
+        "member_since": "March 2025",
+    }
+
+    stats = [
+        {"label": "Total spent", "value": "PKR 48,320"},
+        {"label": "Transactions", "value": "27"},
+        {"label": "Top category", "value": "Bills"},
+    ]
+
+    transactions = [
+        {"date": "2026-08-29", "description": "Electricity bill", "slug": "bills", "label": "Bills", "amount": "4,500"},
+        {"date": "2026-08-27", "description": "Grocery run at Al-Fatah", "slug": "food", "label": "Food", "amount": "1,850"},
+        {"date": "2026-08-24", "description": "Careem ride to office", "slug": "transport", "label": "Transport", "amount": "420"},
+        {"date": "2026-08-20", "description": "Dentist appointment", "slug": "health", "label": "Health", "amount": "3,000"},
+        {"date": "2026-08-18", "description": "Movie night — Cinepax", "slug": "entertainment", "label": "Entertainment", "amount": "1,200"},
+        {"date": "2026-08-15", "description": "New winter jacket", "slug": "shopping", "label": "Shopping", "amount": "6,750"},
+    ]
+
+    categories = [
+        {"label": "Bills", "slug": "bills", "amount": "PKR 12,400", "width_class": "cat-w-100"},
+        {"label": "Shopping", "slug": "shopping", "amount": "PKR 9,750", "width_class": "cat-w-80"},
+        {"label": "Food", "slug": "food", "amount": "PKR 8,200", "width_class": "cat-w-70"},
+        {"label": "Health", "slug": "health", "amount": "PKR 6,100", "width_class": "cat-w-50"},
+        {"label": "Entertainment", "slug": "entertainment", "amount": "PKR 4,900", "width_class": "cat-w-40"},
+        {"label": "Transport", "slug": "transport", "amount": "PKR 4,270", "width_class": "cat-w-30"},
+        {"label": "Other", "slug": "other", "amount": "PKR 2,700", "width_class": "cat-w-20"},
+    ]
+
+    return render_template(
+        "profile.html", user=user, stats=stats,
+        transactions=transactions, categories=categories,
+    )
 
 
 @app.route("/terms")
@@ -148,11 +191,6 @@ def privacy():
 # ------------------------------------------------------------------ #
 # Placeholder routes — students will implement these                  #
 # ------------------------------------------------------------------ #
-
-@app.route("/profile")
-def profile():
-    return "Profile page — coming in Step 4"
-
 
 @app.route("/expenses/add")
 def add_expense():

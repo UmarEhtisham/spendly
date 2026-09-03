@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Profile — Spendly{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="profile-section">
+
+    <div class="profile-card">
+        <div class="profile-avatar">{{ user.initials }}</div>
+        <div>
+            <div class="profile-name">{{ user.name }}</div>
+            <div class="profile-email">{{ user.email }}</div>
+            <div class="profile-meta">Member since {{ user.member_since }}</div>
+        </div>
+    </div>
+
+    <div class="profile-stats">
+        {% for stat in stats %}
+        <div class="stat-card">
+            <div class="stat-label">{{ stat.label }}</div>
+            <div class="stat-value">{{ stat.value }}</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="profile-block">
+        <h2 class="profile-block-title">Recent transactions</h2>
+        <div class="txn-table-wrap">
+            <table class="txn-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for txn in transactions %}
+                    <tr>
+                        <td>{{ txn.date }}</td>
+                        <td>{{ txn.description }}</td>
+                        <td><span class="cat-badge cat-badge--{{ txn.slug }}">{{ txn.label }}</span></td>
+                        <td class="txn-amount">PKR {{ txn.amount }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="profile-block">
+        <h2 class="profile-block-title">Spending by category</h2>
+        {% for cat in categories %}
+        <div class="cat-row">
+            <span class="cat-row-name">{{ cat.label }}</span>
+            <div class="cat-track">
+                <div class="cat-bar cat-bar--{{ cat.slug }} {{ cat.width_class }}"></div>
+            </div>
+            <span class="cat-row-amt">{{ cat.amount }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+</section>
+
+{% endblock %}
